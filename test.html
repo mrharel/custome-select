@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Custom Select</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+            html body{
+                font-family: Arial;
+            }
+            .box{
+                margin: 25px;
+                border: 1px solid activeborder;
+                background-color: #9ecae1;
+                width: 300px;
+                height: 300px;
+                padding: 10px;
+            }
+
+            .red{
+                color: red;
+            }
+
+            .custome-select{
+                width: 200px;
+                height: 20px;
+            }
+
+            .selected
+            {
+                margin: 10px;
+                border: 2px dashed #555;
+            }
+
+            .highlight:hover
+            {
+                background-color: #333;
+            }
+
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+        <script src="jquery-custom-select.js"></script>
+        <link href="jquery-custom-select-white.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="box box1">
+            <p>
+                This is a test for the custom select
+            </p>
+            <select style="width:190px">
+                <option data-name="amir" data-color="#ff00ff">the name amir should be colored</option>
+                <option data-name="john smith" data-color="#00ff00">where is john smith?</option>
+                <option>just a plain option</option>
+            </select>
+            <h5>Selected:</h5>
+            <div class="selected">Selected Text goes here..</div>
+        </div>
+
+        <div class="box box2">
+            <p>
+                This is a test for the custom select
+            </p>
+            <div class="custome-select"></div>
+            <h5>Selected:</h5>
+            <div class="selected">selected index is 0</div>
+            <button id="set-selected">Get selected index</button>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("select").customSelect({
+                    change : function(str,index,attr){
+                        $(".box1 .selected").html(str);
+                    },
+                    context : window,
+                    optionContentCallback: function(str,index,attr){
+                        console.log(str,index,attr);
+                        if( attr["data-name"] ){
+                            str = str.replace( attr["data-name"] , "<span class='highlight' style='color:"+attr["data-color"]+";'>"+attr["data-name"]+"</span>");
+                        }
+                        return str;
+                    },
+                    selected: 2,
+                    dropdownWidth: 250
+                });
+
+                $(".custome-select").customSelect({
+                    change : function(str,index,attr){console.log("select change ",index);
+                        //do nothing...
+                    },
+                    context : window,
+                    options: [
+                        "i want to buy <a target='_blank' href='http://cpetley.tumblr.com/post/29002395585/jaymug-nananana-batman-periodic-table-t-shirt'>this</a> product",
+                        "i found a <span style='background-color:red;color:#fff;'>bug</span>"],
+                    attr : [{"data-type":"bug"},{"data-type":"bug","class":"line-2"}],
+                    //optionContentCallback: function(str,index,attr){ return str;},
+                    selected : 0,
+                    dropdownWidth: 250
+                });
+
+                $("#set-selected").click(function(){
+                    var selectedData = $(".custome-select").customSelect("getSelected");
+                    //selecteddata = {index:NUMBER , str:STRING , attr:OBJECT }
+                    $(".box2 .selected").html( "selected index is "+ selectedData.index );
+                });
+            });
+        </script>
+    </body>
+</html>
