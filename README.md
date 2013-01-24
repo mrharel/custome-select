@@ -3,6 +3,9 @@ custome-select
 
 jquery plugin for custom select elements
 
+##Test Page
+http://www.amirharel.com/labs/custom-select/
+
 ##Custom Select
 This jquery plugin allows you to create a more fency select control. HTML specification doesn't allow OPTION tags to have nested tags, so there is no way to add a span for example inside of an OPTION to style it.
 This is why this plugin was created - to allow developers to create a more advance select box. 
