@@ -45,4 +45,28 @@ When it is being used to initilize the custom select it take one parameter, whic
  * attr {Object} all the attributes that this option will have
 * **selected** {Number} (optional)which option should be set as selected
 * **dropdownWidth** {Number} (optional) in case you want you can set the drowpdown width
-* **options** TBD...
+* **options** {Array} (optional) in case the initialization is on a container element this array specify the options we need to create. this is an array of strings containing html string for each option
+* **attr** {Array} (optional) in case the initialization is on a container element this array specify the attributes that the option element should have. this is an array of objects where each object isa dictionary where keys are the attribute names and the values are the values to set to each attribute
+
+Example
+```
+//selecting a select element and making it a custom select
+$("select").customSelect({
+    //callback for change event
+    change : function(str,index,attr){
+        $(".box1 .selected").html(str);
+    },
+    //callback to set the html for each option
+    optionContentCallback: function(str,index,attr){
+        console.log(str,index,attr);
+        if( attr["data-name"] ){
+            str = str.replace( attr["data-name"] , "<span class='highlight' style='color:"+attr["data-color"]+";'>"+attr["data-name"]+"</span>");
+        }
+        return str;
+    },
+    //setting the 3rd element to be selected
+    selected: 2,
+    //setting minimum width for the dropdown
+    dropdownWidth: 250
+});
+```
