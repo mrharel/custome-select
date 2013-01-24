@@ -70,3 +70,19 @@ $("select").customSelect({
     dropdownWidth: 250
 });
 ```
+####getSelected
+This method gets the current selected option. Unlike a real select element, this metho return an object containing the html, the index and the attributes of the selected element.
+```
+var selectedData = $(".custome-select").customSelect("getSelected");
+var html = selectedData.str;
+var index = selectedData.index;
+var attr = selectedData.attr;
+for( var key in attr ){
+    console.log(key+"="+attr[key]);
+}
+```
+####getSelectedIndex
+This method return the current element index
+```
+var selectedIndex = $(".custome-select").customSelect("getSelectedIndex");
+```
