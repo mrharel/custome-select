@@ -18,7 +18,7 @@
 
 
     var TEMPLATES = {
-        BOUNDING_BOX : '<div class="jcs-main"><div class="jcs-main-box"></div><button class="jcs-main-button"><span class="jcs-select-arrow"></span></button><ul class="jcs-option-list"></ul></div>'
+        BOUNDING_BOX : '<div class="jcs-main"><div class="jcs-main-box"></div><button class="jcs-main-button"><span class="jcs-select-arrow"></span></button><ul class="jcs-option-list" style="display:none;"></ul></div>'
     };
 
     /**
@@ -175,7 +175,7 @@
          * @private
          */
         _showDropdown: function(){
-            this._$boundingBox.find(".jcs-option-list").addClass("jcs-show");
+            this._$boundingBox.find(".jcs-option-list").fadeIn(300);
         },
 
         /**
@@ -184,7 +184,7 @@
          * @private
          */
         _hideDropdown: function(){
-            this._$boundingBox.find(".jcs-option-list").removeClass("jcs-show");
+            this._$boundingBox.find(".jcs-option-list").fadeOut(300);
         },
 
         /**
