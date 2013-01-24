@@ -67,19 +67,6 @@
     position: absolute;
     background-color: #fff;
     border: 1px solid #DCE0E2;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    -moz-opacity:0;
-    opacity: 0;
-    transition: opacity 0.3s
-}
-
-.jcs-main .jcs-option-list.jcs-show
-{
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-    filter: alpha(opacity=100);
-    -moz-opacity:1;
-    opacity: 1;
 }
 
 .jcs-main .jcs-option-list li
