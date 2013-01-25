@@ -50,6 +50,7 @@ When it is being used to initilize the custom select it take one parameter, whic
 * **dropdownWidth** {Number} (optional) in case you want you can set the drowpdown width
 * **options** {Array} (optional) in case the initialization is on a container element this array specify the options we need to create. this is an array of strings containing html string for each option
 * **attr** {Array} (optional) in case the initialization is on a container element this array specify the attributes that the option element should have. this is an array of objects where each object isa dictionary where keys are the attribute names and the values are the values to set to each attribute
+* **selectedContentCallback** {Function} callback when the custom select needs to render the selected option after the dropdown is closed. this allows you to change the html that we render in the closed select from the html we use to render the option. the method gets 3 parametr: str, index and attr like all other relevant calbacks.
 
 Example
 ```
