@@ -36,6 +36,13 @@
                 background-color: #333;
             }
 
+            .box3
+            {
+                left: 360px;
+                position: absolute;
+                top: 0;
+            }
+
         </style>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
         <script src="jquery-custom-select.js"></script>
@@ -44,9 +51,9 @@
     <body>
         <div class="box box1">
             <p>
-                This is a test for the custom select
+                example of select with attributes to color options
             </p>
-            <select style="width:190px">
+            <select id="select1" style="width:190px">
                 <option data-name="amir" data-color="#ff00ff">the name amir should be colored</option>
                 <option data-name="john smith" data-color="#00ff00">where is john smith?</option>
                 <option>just a plain option</option>
@@ -57,16 +64,29 @@
 
         <div class="box box2">
             <p>
-                This is a test for the custom select
+                example of div container
             </p>
             <div class="custome-select"></div>
             <h5>Selected:</h5>
             <div class="selected">selected index is 0</div>
             <button id="set-selected">Get selected index</button>
         </div>
+
+        <div class="box box3">
+            <p>
+                example of image select
+            </p>
+            <select id="select2" style="width:190px">
+                <option data-url="http://www.lilano.de/catalog/images/Reichstag_Berlin_20110320_e75-06-1042-9008.jpg"></option>
+                <option data-url="http://traveldk.com/dkimages/0-berlin_master.jpg"></option>
+                <option data-url="http://www3.math.tu-berlin.de/spring10/berlin.jpg"></option>
+            </select>
+        </div>
+
+
         <script>
             $(document).ready(function(){
-                $("select").customSelect({
+                $("#select1").customSelect({
                     change : function(str,index,attr){
                         $(".box1 .selected").html(str);
                     },
@@ -80,6 +100,22 @@
                     },
                     selected: 2,
                     dropdownWidth: 250
+                });
+
+                $("#select2").customSelect({
+                    change : function(str,index,attr){
+
+                    },
+                    context : window,
+                    optionContentCallback: function(str,index,attr){
+                        str = '<img width="100" height="100" src="'+attr["data-url"]+'" />';
+                        return str;
+                    },
+                    selected: 0,
+                    dropdownWidth: 108,
+                    selectedContentCallback: function(str,index,attr){
+                        return attr["data-url"];
+                    }
                 });
 
                 $(".custome-select").customSelect({
@@ -103,5 +139,8 @@
                 });
             });
         </script>
+
+        <h3>Code</h3>
+        You can download the code at <a href="https://github.com/mrharel/custome-select">github</a>
     </body>
 </html>
