@@ -213,6 +213,10 @@
             var $option = this._$boundingBox.find("ul.jcs-option-list li:nth-child("+selected+")");
             this._$selectedElm = $option;
             var html = $option.html();
+            if( this._cfg.selectedContentCallback ){
+                var data = this._getDataFromElm($option);
+                html = this._cfg.selectedContentCallback.call( this._cfg.context , html,selected,data.attr);
+            }
             this._$boundingBox.find(".jcs-main-box").html(html);
         },
 
