@@ -175,6 +175,13 @@
          * @private
          */
         _showDropdown: function(){
+            $('.jcs-main').each(function(){
+                if( $(this).hasClass('active') ){
+                    $(this).removeClass('active');
+                    $(this).find(".jcs-option-list").fadeOut(300);
+                }
+            });
+            this._$boundingBox.addClass('active');
             this._$boundingBox.find(".jcs-option-list").fadeIn(300);
         },
 
@@ -184,6 +191,7 @@
          * @private
          */
         _hideDropdown: function(){
+            this._$boundingBox.removeClass('active');
             this._$boundingBox.find(".jcs-option-list").fadeOut(300);
         },
 
@@ -302,7 +310,7 @@
 
         /**
          * adding the bounding box to the page. if we got a select element then we append
-         * the boundingbox to the body and set it absolute. if we got a div container, we append it
+         * the containerBox element as set in the initilization. if this containerBox is not provided we add it to the body and set it absolute. if we got a div container, we append it
          * to this container
          * @method _addBoundingbox
          * @private
@@ -310,7 +318,8 @@
          */
         _addBoundingbox: function($bbox){
             if( this._select.tagName == "SELECT" ){
-                $("body").append($bbox);
+                var container = this._cfg.containerBox || "body";
+                $(container).append($bbox);
                 $bbox.addClass("jcs-absolute");
                 var offset = $(this._select).offset();
                 $bbox.css(offset);
